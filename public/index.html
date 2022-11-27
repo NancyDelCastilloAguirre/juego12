@@ -1,0 +1,245 @@
+<!DOCTYPE html> 
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Juego</title>
+  
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Raleway&effect=fire-animation">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <script src="js/howler.core.js"></script>
+      <script src='js/juego.js'></script>
+      
+
+  </head>
+  <body onload='inicializa();'> 
+    <div id="demo-modal" class="modal ">
+      <div class="modal-content nes-container  ">
+        <center>
+          <div class="font-effect-fire-animation">
+            <p class="title">Bienvenido al juego!!!</p>
+          </div>
+
+        </center>
+      </div>
+      <div class="modal-footer ">
+        &nbsp;&nbsp;&nbsp;&nbsp;<a href="#openModal"><img src="img/start.png" width="150" height="50"></a>
+      </div>
+  
+    </div>
+    <table>
+      <tr>
+        <td>
+          <ul class="pages">
+            <li class="chat page">
+              <div class="chatArea">
+                <ul class="messages"></ul>
+              </div>
+              <input class="inputMessage" placeholder="..." />
+            </li>
+
+            <li class="login page">
+              <div class="form">
+                <h3 >Nombre de usuario:</h3>
+
+                <input class="usernameInput" type="text" maxlength="14" id="usernameInput"/>
+
+              </div>
+            </li>
+            
+          </ul>
+        </td>
+        <td>
+
+    <div align="right">  
+      <div>
+        <div  style="position: absolute; right: 20px; color: #F1A661; cursor: pointer;">
+          <a ><i><b>menu</b></i></a>
+          <ul>
+              <a href="#openModal"  style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+                <i class="material-icons">help_outline</i>
+              </a>
+                <br>
+                <div id="openModal" class="modalDialog">
+                  <div>
+                    <a href="#close" title="Close" class="close">X</a>
+                    <img src="img/modal.png" width="800" height="400">
+                  </div>
+                </div>
+              <a onclick="cambiaStilo(1);"   style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+                <i class="material-icons">filter_1</i>
+              </a><br>
+              <a onclick="cambiaStilo(2);" class="btn-floating  grey  darken-4"
+                style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+                <i class="material-icons">filter_2</i>
+              </a><br>
+              <a onclick="cambiaStilo(3);" class="btn-floating  grey  darken-4"
+                style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+                <i class="material-icons">filter_3</i>
+              </a><br>
+              <a onclick="cambiaStilo(4);" class="btn-floating  grey  darken-4"
+                style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+                <i class="material-icons">filter_4</i>
+              </a><br>
+              <a onclick="cambiaStilo(5);" class="btn-floating  grey  darken-4"
+                style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+                <i class="material-icons">filter_5</i>
+              </a><br>
+              <a onclick="cambiaStilo(6);" class="btn-floating  grey  darken-4"
+                style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+                <i class="material-icons">filter_6</i>
+              </a><br>
+              <a onclick="cambiaStilo(7);" class="btn-floating  grey  darken-4"
+                style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+                <i class="material-icons">filter_7</i>
+              </a><br>
+              <a onclick="cambiaStilo( Math.floor(Math.random() * 9));" class="btn-floating  grey  darken-4"
+                style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+                <i class="material-icons">shuffle</i>
+              </a>
+          </ul>
+        </div>
+      </div>
+
+      <div class=" container">
+        
+          <canvas id='canvas' width='750' height='500' class="nes-container is-dark"></canvas>
+        
+        <div class="row">
+
+          <div class="col s6 m6">
+            <div>
+              <p>Nivel Actual</p>
+                <h5 class="center" id="nivel"></h5>
+                <progress id="nivelProgress" value="0" max="9"></progress>
+            </div>
+            
+          </div>
+          <div class="col s6 m6">
+            <div>
+              <p>Nivel Alcanzado</p>
+              <div>
+                <h5 class="center" id="maximo"></h5>
+                <progress id="maxProgress"  value="0" max="9"></progress>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+        <!-- <a class="btn-floating btn-large waves-effect waves-light right green darken-3 modal-trigger" href="#modal1"><i
+            class="material-icons">help_outline</i></a> 
+
+        <div id="botones" style="display: none;">
+          <center>
+            <div class="row">
+
+              <button type="button" class="nes-btn is-primary " onclick="protagonista.arriba();"><i
+                  class="material-icons">arrow_upward</i></button>
+            </div>
+            <div class="row">
+              <button type="button" class="nes-btn is-primary" onclick="protagonista.izquierda();"><i
+                  class="material-icons">arrow_back</i></button>
+              <button type="button" class="nes-btn is-disabled" onclick="musica.volume=0;"><i
+                  class="material-icons">volume_off</i></button>
+              <button type="button" class="nes-btn is-primary" onclick="protagonista.derecha();"><i
+                  class="material-icons">arrow_forward</i></button>
+            </div>
+            <div class="row">
+              <button type="button" class="nes-btn is-primary" onclick="protagonista.abajo();"><i
+                  class="material-icons">arrow_downward</i></button>
+            </div>
+          </center>
+        </div>-->
+
+      </div> <!-- finaliza container -->
+
+        </td>
+      </tr>
+    </table>
+    
+    
+
+
+
+
+  </div>
+  <script>
+   
+  $(document).ready(function(){
+   
+      $('.modal').modal();
+   
+    })
+   
+  </script>
+
+
+  <!-- script materialize.css -->
+  <script src="materialize.min.js"></script>
+
+  <script>
+    M.AutoInit();
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems);
+
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems, {
+        direction: 'top'
+      });
+    });
+
+
+
+
+    navegador = navigator.userAgent; //busco el "userAgent" del usuario.
+    //lista de palabras del "userAgent" en los móviles
+    moviles = ["Mobile", "iPhone", "iPod", "BlackBerry", "Opera Mini", "Sony", "MOT", "Nokia", "samsung"];
+    detector = 0; //Variable que detectará si se usa un móvil
+    for (i in moviles) { //comprobar en la lista ...
+      //si el método "indexOf" no devuelve -1, indica que la palabra está en el "userAgent"
+      compruebo = navegador.indexOf(moviles[i]);
+      if (compruebo > -1) {
+        detector = 1; //Si es un móvil, cambio el valor del detector
+      }
+    }
+    if (detector == 1) { //si es un móvil redirecciono la página.
+      document.getElementById('canvas').style.zoom = "50%";
+      document.getElementById('maxProgress').style.zoom = "60%";
+      document.getElementById('nivelProgress').style.zoom = "60%";
+      document.getElementById('botones').style.display = '';
+    }
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      console.log("El Navegador admite service workers");
+      window.addEventListener('load', function () {
+        //navigator.serviceWorker.register('sw_offlinepage.js')
+        //navigator.serviceWorker.register('sw_offlinesite.js')
+        navigator.serviceWorker.register(/*'js/sw.js'*/ 'generate-sw.js')
+
+          .then(function (registration) {
+            console.log('Service worker registrado de modo correcto');
+            console.log('Scope: ' + registration.scope)
+          }, function (error) {
+            console.log('El registro del Service worker ha fallado');
+            console.log(error)
+          });
+      });
+    }
+  </script>
+    
+    
+    
+    
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/main.js"></script>
+  </body>
+</html>
